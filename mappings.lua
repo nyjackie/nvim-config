@@ -6,7 +6,13 @@ M.general = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
   },
   v = {
-    [">"] = { ">gv", "indent"},
+    [">"] = { ">gv", "indent" },
+  },
+}
+
+M.telescope = {
+  n = {
+    ["<leader>fs"] = { "<cmd> Telescope grep_string <CR>", "Grep String" },
   },
 }
 
