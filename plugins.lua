@@ -34,13 +34,38 @@ local plugins = {
       return require "custom.configs.null-ls"
     end,
   },
+
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
-      require("better_escape").setup()
+      require("better_escape").setup {
+        mapping = { "jk", "jj" },
+      }
     end,
   },
+
+  -- {
+  --   "hrsh7th/cmp-nvim-lsp",
+  -- },
+  --
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   dependencies = {
+  --     "saadparwaiz1/cmp_luasnip",
+  --     "rafamadriz/friendly-snippets",
+  --     config = function()
+  --       require("luasnip.loaders.from_vscode").lazy_load()
+  --     end,
+  --   },
+  -- },
+  --
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = function()
+  --     return require "custom.configs.cmp"
+  --   end,
+  -- },
 }
 
 return plugins

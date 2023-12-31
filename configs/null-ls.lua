@@ -15,6 +15,9 @@ local opts = {
     formatting.goimports_reviser,
     formatting.golines,
     lint.golangci_lint,
+    -- Ruby
+    formatting.rubocop,
+    lint.rubocop,
   },
   on_attach = function(client, bufnr)
     if client.supports_method "textDocument/formatting" then

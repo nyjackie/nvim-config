@@ -14,8 +14,10 @@ M.mason = {
     "gopls",
     "gofumpt",
     "golines",
+    "goimports",
     "goimports-reviser",
     "golangci-lint",
+    "solargraph",
   },
 }
 
