@@ -45,27 +45,55 @@ local plugins = {
     end,
   },
 
-  -- {
-  --   "hrsh7th/cmp-nvim-lsp",
-  -- },
-  --
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   dependencies = {
-  --     "saadparwaiz1/cmp_luasnip",
-  --     "rafamadriz/friendly-snippets",
-  --     config = function()
-  --       require("luasnip.loaders.from_vscode").lazy_load()
-  --     end,
-  --   },
-  -- },
-  --
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   opts = function()
-  --     return require "custom.configs.cmp"
-  --   end,
-  -- },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require "custom.configs.dap"
+      require("core.utils").load_mappings "dap"
+    end,
+  },
+
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = overrides.mason_dap,
+  },
+
+  {
+    "mxsdev/nvim-dap-vscode-js",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+    config = function()
+      require("dap-vscode-js").setup {
+        adapters = { "pwa-node", "pwa-chrome" },
+      }
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+      require("dapui").setup()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.after.disconnect["dapui_config"] = function()
+        dapui.close()
+      end
+    end,
+  },
 }
 
 return plugins

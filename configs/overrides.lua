@@ -21,6 +21,10 @@ M.mason = {
   },
 }
 
+M.mason_dap = {
+  ensure_installed = { "js" },
+}
+
 M.treesitter = {
   ensure_installed = {
     "vim",

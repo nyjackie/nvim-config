@@ -13,6 +13,13 @@ for _, lsp in ipairs(servers) do
       solargraph = {
         diagnostic = true,
       },
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+          unusedparams = true,
+        },
+      },
     },
   }
 end
